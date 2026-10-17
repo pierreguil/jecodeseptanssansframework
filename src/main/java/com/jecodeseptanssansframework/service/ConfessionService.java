@@ -1,27 +1,33 @@
 package com.jecodeseptanssansframework.service;
-import java.util.List;
+
 import com.jecodeseptanssansframework.model.Confession;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
+import java.util.List;
 
-
+@Service
 public class ConfessionService {
 
+    private final List<Confession> confessions = new ArrayList<>();
 
-
-    private List<Confession> confessions = new ArrayList<>();
+    public List<Confession> findAll() {
+        return confessions;
+    }
 
     public List<Confession> findByAuthor(String author) {
         List<Confession> result = new ArrayList<>();
-        for (Confession confession : this.confessions){
-            if(confession.getAuthor().equals(author)){
+
+        for (Confession confession : confessions) {
+            if (confession.getAuthor().equals(author)) {
                 result.add(confession);
             }
         }
+
         return result;
     }
 
     public void addConfession(Confession confession) {
-        this.confessions.add(confession);
+        confessions.add(confession);
     }
-
 }
